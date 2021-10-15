@@ -1,7 +1,7 @@
 <script context="module">
-    export async function load({ params }, { token }) {
+    export async function preload({ params }, { token }) {
         if (token){
-            this.redirect(302, `/`)
+            this.redirect(302, `/overview`)
         }
     }
 </script>
@@ -20,7 +20,7 @@
         console.log(response);
         if (response.token) {
             $session.token = response.token;
-            goto('/');
+            goto('/overview');
         }
     }
 </script>
@@ -38,9 +38,7 @@
                     <a href="/register">Need an account?</a>
                 </p>
 
-                {#if error}
-                    <div class="alert alert-danger" role="alert">{error}</div>
-                {/if}
+
 
 
                 <form on:submit|preventDefault={submit}>
